@@ -11,17 +11,17 @@ module.exports = {
     return require(str);
   },
 
-  async run(appInfo, rootConfig) {
-    let args = {...appInfo, rootConfig};
+  async run(appInfo, options) {
+    let args = {...appInfo, options};
 
     // Before hook
-    config.modules.forEach((el) => {
+    options.modules.forEach((el) => {
       const module = this.rq(el);
       module.register && module.register(args);
     });
 
     // Boot hook
-    config.modules.forEach((el) => {
+    options.modules.forEach((el) => {
       const module = this.rq(el);
       module.boot && module.boot(args);
     });
