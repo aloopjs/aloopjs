@@ -11,17 +11,19 @@ module.exports = {
     return require(str);
   },
 
-  async run(appInfo, config) {
+  async run(appInfo, rootConfig) {
+    let args = {...appInfo, rootConfig};
+
     // Before hook
     config.modules.forEach((el) => {
       const module = this.rq(el);
-      module.register && module.register(appInfo, config);
+      module.register && module.register(args);
     });
 
     // Boot hook
     config.modules.forEach((el) => {
       const module = this.rq(el);
-      module.boot && module.boot(appInfo, config);
+      module.boot && module.boot(args);
     });
   }
 };
