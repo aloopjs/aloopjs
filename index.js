@@ -3,12 +3,12 @@ const basename = path.dirname(require.main.filename);
 
 module.exports = {
   rq(str){
-    // Check if have #
-    if (str.charAt(0) === '#') {
-      return require([basename, 'src', str.replace(/^#/, '') , 'index'].join(path.sep));
+    // Check if have not start @
+    if (str.charAt(0) !== '@') {
+      return require([basename, 'src', str , 'index'].join(path.sep));
     }
 
-    return require(str);
+    return require(str.replace(/^@/, ''));
   },
 
   async run(appInfo, options) {
