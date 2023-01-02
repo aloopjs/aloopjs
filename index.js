@@ -1,5 +1,10 @@
 const path = require('path');
 const basename = path.dirname(require.main.filename);
+global.__modulePath = function(el, sub){
+  // Check if have not start @
+  if (el.charAt(0) !== '@') root = [basename, 'src', el, sub].join(path.sep);
+  else root = [basename, 'node_modules', el.replace(/^@/, ''), sub].join(path.sep);
+};
 
 module.exports = {
   rq(str){
