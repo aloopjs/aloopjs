@@ -3,13 +3,7 @@ const basename = path.dirname(require.main.filename);
 global.App = global.App || {};
 global.App.base = {
   modulePath(el, sub){
-    let dir = [];
-
-    if (el.root == 'node_modules') {
-      dir = [basename, 'node_modules', el.name];
-    } else {
-      dir = [basename, 'src', el.name];
-    }
+    let dir = [basename, el.root, el.name];
 
     if (sub) {
       dir.push(sub);
