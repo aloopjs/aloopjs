@@ -1,7 +1,7 @@
 const path = require('path');
 const basename = path.dirname(require.main.filename);
-global.App = global.App || {};
-global.App.base = {
+global.Aloop = global.Aloop || {};
+global.Aloop.base = {
   modulePath(el, sub){
     let dir = [basename, el.root, el.name];
 
@@ -15,7 +15,7 @@ global.App.base = {
 
 module.exports = {
   rq(el){
-    let p = App.base.modulePath(el);
+    let p = Aloop.base.modulePath(el);
     return require(p);
   },
 
