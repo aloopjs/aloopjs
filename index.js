@@ -42,6 +42,8 @@ module.exports = {
       modules
     }};
 
+    global.Aloop.options = args.options;
+
     // Before hook
     modules.forEach((el) => {
       const module = this.rq(el);
