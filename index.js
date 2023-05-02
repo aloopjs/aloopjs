@@ -42,7 +42,7 @@ module.exports = {
       modules
     }};
 
-    global.Aloop.options = options;
+    global.Aloop.options = args.options;
     global.Aloop.info = appInfo;
 
     // Before hook
