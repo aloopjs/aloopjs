@@ -38,9 +38,10 @@ module.exports = {
       modules = [...modules, ...devModules];
     }
 
-    let args = {...appInfo, options: {
-      modules
-    }};
+    delete options.devModules;
+    options.modules = modules;
+
+    let args = {...appInfo, options};
 
     global.Aloop.options = args.options;
     global.Aloop.info = appInfo;
