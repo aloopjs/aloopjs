@@ -23,27 +23,21 @@ module.exports = {
     let modules = [];
 
     if (options.modules) {
-      modules = options.modules.map((item) => ({
-        name: item,
-        root: 'node_modules'
-      }));
+      options.modules.forEach((e) => {
+        e.imports.forEach((name) => {
+          modules.push({
+            root: e.root,
+            name
+          });
+        });
+      });
     }
 
-    if (options.devModules) {
-      let devModules = options.devModules.map((item) => ({
-        name: item,
-        root: 'src'
-      }));
-
-      modules = [...modules, ...devModules];
-    }
-
-    delete options.devModules;
     options.modules = modules;
 
     let args = {...appInfo, options};
 
-    global.Aloop.options = args.options;
+    global.Aloop.options = options;
     global.Aloop.info = appInfo;
 
     // Before hook
